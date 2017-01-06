@@ -1,0 +1,14 @@
+---
+kibana::package_name: 'kibana'
+kibana::package_ensure: 'present'
+kibana::service_name: 'kibana'
+kibana::service_ensure: 'running'
+kibana::manage_repo: true
+kibana::config:
+  'server.port':
+    'ensure': 'present'
+    'value': 5601
+  'server.host':
+    'ensure': 'absent'
+    'value': 'localhost'
+...

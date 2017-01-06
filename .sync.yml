@@ -1,0 +1,12 @@
+---
+.travis.yml:
+  secure: ""
+  docker_sets:
+  - set: docker/centos-6
+  - set: docker/centos-7
+  - set: docker/debian-7
+  - set: docker/debian-8
+  - set: docker/ubuntu-14.04
+  - set: docker/ubuntu-16.04
+spec/spec_helper.rb:
+  mock_with: ':rspec'
