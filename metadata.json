@@ -1,6 +1,6 @@
 {
   "name": "aquister-kibana",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "aquister",
   "summary": "Puppet elastic kibana module",
   "license": "MIT",
