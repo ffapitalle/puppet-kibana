@@ -1,17 +1,16 @@
----
 sudo: false
 language: ruby
 cache: bundler
-bundler_args: --without system_tests development
+bundler_args: "--without system_tests development"
 before_install:
-  - bundle -v
-  - rm Gemfile.lock || true
-  - gem update --system
-  - gem update bundler
-  - gem --version
-  - bundle -v
+- bundle -v
+- rm Gemfile.lock || true
+- gem update --system
+- gem update bundler
+- gem --version
+- bundle -v
 script:
-  - 'bundle exec rake $CHECK'
+- bundle exec rake $CHECK
 matrix:
   fast_finish: true
   include:
@@ -31,32 +30,30 @@ matrix:
     env: PUPPET_INSTALL_TYPE=agent CHECK=acceptance BEAKER_debug=true BEAKER_set=centos-7
     services: docker
     sudo: required
-    bundler_args: --without development
+    bundler_args: "--without development"
   - rvm: 2.4.0
     env: PUPPET_INSTALL_TYPE=agent CHECK=acceptance BEAKER_debug=true BEAKER_set=debian-8
     services: docker
     sudo: required
-    bundler_args: --without development
+    bundler_args: "--without development"
   - rvm: 2.4.0
     env: PUPPET_INSTALL_TYPE=agent CHECK=acceptance BEAKER_debug=true BEAKER_set=ubuntu-14.04
     services: docker
     sudo: required
-    bundler_args: --without development
+    bundler_args: "--without development"
   - rvm: 2.4.0
     env: PUPPET_INSTALL_TYPE=agent CHECK=acceptance BEAKER_debug=true BEAKER_set=ubuntu-16.04
     services: docker
     sudo: required
-    bundler_args: --without development
+    bundler_args: "--without development"
 notifications:
   email: false
 deploy:
   provider: puppetforge
-  user: aquister
+  user: onpuppet
   password:
-    secure: "fWB+kjZ4lZ5Iw1xbqRJVQyXnoZ/qEESEMqs7254p4anY6sCjD+3vfIksDwoaVTDcCqzD4nOPB7WjQqY710EaiFv/S4PYPMwr2C06mXQZd3O6YrUad8JVmiifGkhuoFUsjyVkZaGZSN4Lae+e06LHeIf2pEeIRe4rZjtkfrwbKDDguB+jz0EdJ5giMN3FQWkxv0Y5XqhytDwNPRX8tRbjozNO/i1QCZHtOUyxgraRlS6IeFp2tweCjSrUX4puwb0mZO2uNUxQMO/DUKOjS9JukRKH3ZxKLL+QGz9AR1CzFXBWYJveaaIfKtLTWjePng3SGXr5jcylPM5fupSZb658Of9p0tXixo3K3gS1Ne3sY06cKzC1b0zyd6XyHWLbvzNPbllMrD+oikSSjcF/hAMj17GuN3oqnLe5doQ6AlO6aCg25nFZZYk/GjJgUqVaVdpgyCWCy7sKnF5XFkEnV8lQvvFTUr+ckpCmxNZPXWJSG5qxvBDPLvbkz3VO/nq5wNcFKncpEgcN8f4stW8ePcUmw8MAUaFRTKnZKTzbInkFwTIoogTWLmKV57EFVErGJMSqOdqwmA7ZK/hJlXLbtfimyK1QYrFY5se5oc5MDaTQ8/NQaVWYXCQmodmA7WWqQYq0sfl7vfbnUGJNUCEBhHIYvrUhP1jv1yh7261NAWWrV+M="
+    secure: ZwU2vQ2hT/5vessoBYy/e4Sr0oqzQ6RxZsFrXL8mLI4JZioN0TcYRmEUbgx8hGJbkP1O2VWYdo0YFZcNJpuMOi1Om+zm4XzmUmGmuMvtWpvL/cqvNPBixIqlVFSYVywlWEW/nIC4nBEj2R+4OyK0ltWolePAJxjn8d9kHsD9gf/8OmM1LziTw1/ySCjiiIX5CRNW88a5uGVV9JlDI5NN5jbtUiqVKJfdzccLjrH2cX+uEiYzDFQJHvfS6sPg4sIPoqYPonJtzdUDu7pMn0y68z9yOlHrNpXK9Q5dSzYRUi13UEyFkDNbcZKzjIHXtxgvbHB1mmVHhSmZxjVO98CX2B1OJ23jd8ejD86HBpNOhgUGMi+30lzMvFZrl3u4Xf8yQDR3HYB2BqEz7ZrxEidLeahbs8cuBH0bzRQNRbPJ40t3/CVKdA2tEdERG8jgVQDub8WhHMQdhmQm8E/4jik8x4DJZZJdz/6pYtAC9SkvA/vadak9mCgTKmw8yMSAgVrNarq08wRx3fUgGSWC5yYIXM/O/QsU6uzAEnqVto+SG83RRkEwOn+flIUNUwwkEjHAWcylU6alP2qkQYcpuAepG3fDTFvSw0UwHRQ9uVPnYQLYgJ8UJCHvYGOhdj47yw9ivpqxdOjfWsJGY2ck60/fBXmGSROXuR0rPOOktSdDBD0=
   on:
     tags: true
-    # all_branches is required to use tags
     all_branches: true
-    # Only publish the build marked with "DEPLOY_TO_FORGE"
     condition: "$DEPLOY_TO_FORGE = yes"
