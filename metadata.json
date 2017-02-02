@@ -1,12 +1,12 @@
 {
-  "name": "aquister-kibana",
-  "version": "1.0.2",
+  "name": "onpuppet-kibana",
+  "version": "2.0.0",
   "author": "aquister",
   "summary": "Puppet elastic kibana module",
   "license": "MIT",
-  "source": "https://github.com/aquister/puppet-kibana.git",
-  "project_page": "http://github.com/aquister/puppet-kibana",
-  "issues_url": "https://github.com/aquister/puppet-kibana/issues",
+  "source": "https://github.com/onpuppet/puppet-kibana.git",
+  "project_page": "http://github.com/onpuppet/puppet-kibana",
+  "issues_url": "https://github.com/onpuppet/puppet-kibana/issues",
   "data_provider": "hiera",
   "dependencies": [
     {
