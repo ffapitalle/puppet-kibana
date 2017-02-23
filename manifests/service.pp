@@ -7,10 +7,10 @@ class kibana::service {
       ensure  => file,
       path    => '/etc/init/kibana.conf',
       content => template('kibana/kibana.upstart.erb'),
-      notify  => Service[$::kibana::service_name]
+      notify  => Service[$::kibana::service_name],
     }
   }
- 
+
   service { $::kibana::service_name:
     ensure     => $::kibana::service_ensure,
     enable     => true,

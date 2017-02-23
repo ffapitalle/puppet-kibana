@@ -9,7 +9,7 @@ class kibana::install {
     }
     default: {
       unless $::kibana::package_version {
-        fail("You need to set kibana::package_version.")
+        fail('You need to set kibana::package_version.')
       }
 
       package { 'curl':
@@ -23,7 +23,9 @@ class kibana::install {
       }
 
       exec { 'download_install':
-        command => "/usr/bin/curl -L ${::kibana::package_download_url}/kibana-${::kibana::package_version}-linux-${::kibana::package_arch}.tar.gz | /bin/tar xvz -C ${::kibana::package_install_dir}",
+        command => "/usr/bin/curl -L\
+                   ${::kibana::package_download_url}/kibana-${::kibana::package_version}-linux-${::kibana::package_arch}.tar.gz\
+                   | /bin/tar xvz -C ${::kibana::package_install_dir}",
         require => [ Package['curl'], File[$::kibana::package_install_dir] ],
         timeout => 1800,
         unless  => "/usr/bin/test -d ${::kibana::package_install_dir}/kibana-${::kibana::package_version}-linux-${::kibana::package_arch}",

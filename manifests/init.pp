@@ -6,7 +6,7 @@ class kibana (
   $package_version      = $kibana::params::package_version,
   $package_arch         = $kibana::params::package_arch,
   $package_install_dir  = $kibana::params::package_install_dir,
-  $package_download_url = $kibana::params::package_download_url
+  $package_download_url = $kibana::params::package_download_url,
   $service_name         = $kibana::params::service_name,
   $service_ensure       = $kibana::params::service_ensure,
   $manage_repo          = $kibana::params::manage_repo,
