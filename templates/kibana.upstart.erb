@@ -1,0 +1,10 @@
+description "Kibana logstash viewer"
+
+start on (net-device-up and local-filesystems and runlevel [2345])
+stop on runlevel [016]
+
+script
+    export HOME=<%= @package_install_dir %>/kibana-<%= @package_version %>-linux-<%= @package_arch %>
+    echo $$ > /var/run/kibana.pid
+    exec <%= @package_install_dir %>/kibana-<%= @package_version %>-linux-<%= @package_arch %>/bin/kibana
+end script

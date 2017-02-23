@@ -1,12 +1,17 @@
-# Class: kibana
+# == Class: kibana
 #
 class kibana (
-  String $package_name,
-  String $package_ensure,
-  String $service_name,
-  String $service_ensure,
-  Boolean $manage_repo,
-  Hash $config,
+  $package_name         = $kibana::params::package_name,
+  $package_ensure       = $kibana::params::package_ensure,
+  $package_version      = $kibana::params::package_version,
+  $package_arch         = $kibana::params::package_arch,
+  $package_install_dir  = $kibana::params::package_install_dir,
+  $package_download_url = $kibana::params::package_download_url
+  $service_name         = $kibana::params::service_name,
+  $service_ensure       = $kibana::params::service_ensure,
+  $manage_repo          = $kibana::params::manage_repo,
+  $repo_version         = $kibana::params::repo_version,
+  $config               = $kibana::params::config,
 ) {
   contain ::kibana::install
   contain ::kibana::config

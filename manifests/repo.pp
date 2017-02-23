@@ -4,8 +4,8 @@ class kibana::repo {
   case $::osfamily {
     'Debian': {
       include ::apt
-      apt::source { 'elastic-5.x':
-        location => 'https://artifacts.elastic.co/packages/5.x/apt',
+      apt::source { "elastic-${::kibana::repo_version}":
+        location => "https://artifacts.elastic.co/packages/${::kibana::repo_version}/apt",
         release  => '',
         repos    => 'stable main',
         include  => {
@@ -23,8 +23,8 @@ class kibana::repo {
       }
     }
     'RedHat': {
-      yumrepo { 'elastic-5.x':
-        baseurl        => 'https://artifacts.elastic.co/packages/5.x/yum',
+      yumrepo { "elastic-${::kibana::repo_version}":
+        baseurl        => "https://artifacts.elastic.co/packages/${::kibana::repo_version}/yum",
         enabled        => '1',
         gpgcheck       => '1',
         gpgkey         => 'https://artifacts.elastic.co/GPG-KEY-elasticsearch',
