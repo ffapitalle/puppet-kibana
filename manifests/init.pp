@@ -12,7 +12,7 @@ class kibana (
   $manage_repo          = $kibana::params::manage_repo,
   $repo_version         = $kibana::params::repo_version,
   $config               = $kibana::params::config,
-) {
+) inherits ::kibana::params {
   contain ::kibana::install
   contain ::kibana::config
   contain ::kibana::service
