@@ -6,8 +6,8 @@ class kibana::repo {
       include ::apt
       apt::source { "elastic-${::kibana::repo_version}":
         location => "https://artifacts.elastic.co/packages/${::kibana::repo_version}/apt",
-        release  => '',
-        repos    => 'stable main',
+        release  => 'stable',
+        repos    => 'main',
         include  => {
           'deb' => true,
         },
