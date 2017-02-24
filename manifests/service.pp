@@ -9,6 +9,21 @@ class kibana::service {
       content => template('kibana/kibana.upstart.erb'),
       notify  => Service[$::kibana::service_name],
     }
+
+    if $::lsbdistrelease >= '15' {
+      file { 'kibana-systemd-service':
+        ensure  => file,
+        path    => '/etc/systemd/system/kibana.service',
+        content => template('kibana/kibana.systemd.erb'),
+        notify  => Service[$::kibana::service_name],
+      }
+    } else {
+      file { 'kibana-init-script':
+        ensure  => file,
+        path    => '/etc/init/kibana.conf',
+        content => template('kibana/kibana.upstart.erb'),
+        notify  => Service[$::kibana::service_name],
+      }
   }
 
   service { $::kibana::service_name:
