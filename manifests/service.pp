@@ -10,7 +10,7 @@ class kibana::service {
       notify  => Service[$::kibana::service_name],
     }
 
-    if $::lsbdistrelease >= '15' {
+    if versioncmp($::lsbdistrelease,'15') >= 0 {
       file { 'kibana-systemd-service':
         ensure  => file,
         path    => '/etc/systemd/system/kibana.service',
